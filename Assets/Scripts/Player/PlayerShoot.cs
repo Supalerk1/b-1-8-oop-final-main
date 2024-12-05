@@ -13,6 +13,13 @@ public class PlayerShoot : MonoBehaviour
     private bool isFireSingle;
     private float lastFireTime;
 
+    AudioManger audioManger;
+
+    private void Awake()
+    {
+        audioManger = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManger>();
+    }
+
     // Check the player's firing type.
     void Update()
     {
@@ -39,6 +46,7 @@ public class PlayerShoot : MonoBehaviour
     // Check the player's pressed fire button?
     private void OnFire(InputValue inputValue)
     {
+        audioManger.PlaySFx(audioManger.Shoot);
         isFireContinuously = inputValue.isPressed;
         if (inputValue.isPressed)
         {
